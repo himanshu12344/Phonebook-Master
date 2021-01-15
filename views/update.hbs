@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../css/update.css">
+<form action="/makeChanges" method="post" >
+    <div class="container">
+        <h1>Update Contact</h1>
+        <input type="hidden" name="id" value="{{data._id}}"/>
+
+        <label>Name</label><input value="{{data.name}}" name="name" required/><br>
+        
+        <label>D.O.B</label><input type="date" value="{{data.dateOfBirth}}" name="dateOfBirth"/><br>
+        <div class="align-objects"><label>Phone Number</label><a><img src="../images/plus.png"  class="add" onclick="addPhoneNumber()"></a></div>
+        <div id="phonediv">{{#each data.phoneNumber}}
+            <input  type="tel" pattern="[1-9]{1}[0-9]{9}" value="{{this}}" name="phoneNumber"/><br>
+        {{/each}}
+        </div>
+        <div class="align-objects"><label>Email</label><a><img src="../images/plus.png"  class="add" onclick="addEmailID()"></a></div>
+        <div id="emaildiv">{{#each data.emailID}}
+            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"value="{{this}}" name="emailID"/><br>
+        {{/each}}
+        </div>
+        
+        <button class="btn" type="submit">UPDATE</button>    
+    </div>
+</form>
+
+<script src="../js/addContacts.js"></script>

@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="../css/style.css">
+<div id="main">
+  <h2>Phone Book</h2>
+  <p>All your near one's are saved here</p>
+  <div class="dropdown">
+    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+      <div id="myDropdown" class="dropdown-content" style="overflow:auto; height:200px;">  
+      
+      {{#each data}}
+      <button type="button" class="collapsible">{{this.name}}</button>
+      <div class="content">
+        <p>{{this.dateOfBirth}} (yyyy/mm/dd)</p> 
+        {{#each this.phoneNumber}}
+        <div class="info-container"><img src="../images/smartphone.png" class="icon-image"> {{this}}</div>
+        {{/each}}
+        {{#each this.emailID}}
+        <div class="info-container"><img src="../images/mail.png" class="icon-image"> {{this}}</div>
+        {{/each}}
+        <div id="frm"><form action="/update" method ="post">
+          <input type="hidden" name="id" value="{{this._id}}"/>
+          <button type="submit">edit</button>
+        </form>  
+        <form action="/remove" method="post" >
+          <input type="hidden" name="id" value="{{this._id}}"/>
+          <button type="submit">remove</button>
+        </form>
+        </div>
+      </div>
+      
+      {{/each}}
+    </div>
+  </div>
+  <form action="/add" method="GET"><br>
+    <button type="submit" class="btn">Add Contact</button>
+    </form>
+  
+</div>
+
+
+<script src="../js/dropDown.js"></script>
